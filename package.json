@@ -1,0 +1,57 @@
+{
+    "metadata": {
+      "stations": [
+        {
+          "id": "S43",
+          "device_id": "S43",
+          "name": "Kim Chuan Road",
+          "location": {
+            "latitude": 1.3399,
+            "longitude": 103.8878
+          }
+        },
+        {
+          "id": "S44",
+          "device_id": "S44",
+          "name": "Nanyang Avenue",
+          "location": {
+            "latitude": 1.34583,
+            "longitude": 103.68166
+          }
+        },
+        {
+          "id": "S121",
+          "device_id": "S121",
+          "name": "Old Choa Chu Kang Road",
+          "location": {
+            "latitude": 1.37288,
+            "longitude": 103.72244
+          }
+        }
+      ],
+      "reading_type": "DBT 1M F",
+      "reading_unit": "deg C"
+    },
+    "items": [
+      {
+        "timestamp": "2023-11-13T23:40:00+08:00",
+        "readings": [
+          {
+            "station_id": "S43",
+            "value": 28.5
+          },
+          {
+            "station_id": "S44",
+            "value": 26.3
+          },
+          {
+            "station_id": "S121",
+            "value": 26.6
+          }
+        ]
+      }
+    ],
+    "api_info": {
+      "status": "healthy"
+    }
+  }
