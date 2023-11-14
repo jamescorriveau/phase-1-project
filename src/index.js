@@ -1,43 +1,51 @@
-let cityInput = document.querySelector(".city-input");
-let reportButton = document.querySelector(".report-button");
+
+fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d163149231311&q=New York&days=7&aqi=no&alerts=no")
+.then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    renderMainData(data);
+    renderWeeklyWeather(data);
+  });
+
 const cityName = document.getElementById("city-name");
 const temperature = document.getElementById("current-temperature");
 const day = document.getElementById("date");
 const weatherImg = document.getElementById("weather-photo");
 const highLow = document.getElementById("high-low");
 
-reportButton.addEventListener("click", getCityWeather);
-
-function getCityWeather() {
-    const cityName = cityInput.value.trim();
-    if (!cityName) return;
-
-    const apiKey = '7db73fb6ebd6428c97d163149231311';
-    const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cityName}&days=7&aqi=no&alerts=no`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            renderMainData(data);
-            renderWeeklyWeather(data);
-        })
-            
-        };
 
 function renderMainData(data) {
-    cityName.textContent = data.location.name;
-    temperature.textContent = `${data.current.temp_f}°`;
+    cityName.textContent = data["location"]["name"]
+    
+    let currentTemperature = data["current"]["temp_f"]
+    temperature.textContent = `${currentTemperature}°`;
+    const temperatureNum = parseInt(currentTemperature);
+    
+    const liElements = document.querySelectorAll('#clothes li');
+    const currentWeather = data.current.condition.text;
 
-    const date = new Date(data.forecast.forecastday[0].date);
-    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    day.textContent = weekdays[date.getDay()];
+    renderRecommendation(currentWeather, temperatureNum);
+    
+        
+    const date = data["forecast"]["forecastday"][0]["date"];
+    const dateObject = new Date(date);
+    const dayOfWeekNumber = dateObject.getDay();
 
-    weatherImg.src = "https:" + data.forecast.forecastday[0].day.condition.icon;
 
-    let high = Math.round(data.forecast.forecastday[0].day.maxtemp_f);
-    let low = Math.round(data.forecast.forecastday[0].day.mintemp_f);
-    highLow.textContent = `${high}° ${low}°`;
+    const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+    const dayOfWeekName = weekdays[dayOfWeekNumber];
+    day.textContent = dayOfWeekName;
+    
+    weatherImg.src = "https:" + data["forecast"]["forecastday"][0]["day"]["condition"]["icon"];
+    
+    let high = Math.round(data["forecast"]["forecastday"][0]["day"]["maxtemp_f"]);
+    let low = Math.round(data["forecast"]["forecastday"][0]["day"]["mintemp_f"]);
+
+    highLow.textContent = `${high}° ${low}°`
 }
+
 
 function renderWeeklyWeather(data) {
     const weeklyWeather = document.getElementById("weekly-weather");
@@ -52,20 +60,33 @@ function renderWeeklyWeather(data) {
         let img = document.createElement("img");
         img.src = "https:" + data.forecast.forecastday[i].day.condition.icon;
 
-        let high = Math.round(data.forecast.forecastday[i].day.maxtemp_f);
-        let low = Math.round(data.forecast.forecastday[i].day.mintemp_f);
-        let highLow2 = document.createElement("p");
-        highLow2.textContent = `${high}° ${low}°`;
+        const highLow2 = document.createElement("p");
+        let high = Math.round(weather["forecast"]["forecastday"][i]["day"]["maxtemp_f"]);
+        let low = Math.round(weather["forecast"]["forecastday"][i]["day"]["mintemp_f"]);
+        const dateObject = new Date(weeklyDate);
+        const dayOfWeekNumber = dateObject.getDay();
+        const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+        const dayOfWeekName = weekdays[dayOfWeekNumber];
+        date.textContent = dayOfWeekName;
 
-        container.append(dayName, img, highLow2);
-        weeklyWeather.appendChild(container);
+        const temperatureHighLow = `${high}° ${low}°`
+        highLow2.textContent = temperatureHighLow;
 
-        
-        container.addEventListener("click", function () {
+        weeklyWeather.append(date,container);
+        container.append(img, highLow2);
+
+        //event listener for images
+        img.addEventListener("click", function() {
             temperature.textContent = `${high}°`;
-            day.textContent = dayName.textContent;
-            weatherImg.src = img.src;
-            highLow.textContent = highLow2.textContent;
-        });
+            day.textContent = dayOfWeekName;
+            weatherImg.src = source;
+            highLow.textContent = temperatureHighLow;
+        })
+
+
     }
+
+
 }
+
+
