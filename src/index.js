@@ -92,8 +92,6 @@ function renderWeeklyWeather(weather) {
 
 
 function renderRecommendation(data, temperature) {
-    console.log(data);
-    console.log(temperature);
     let clothes = {
         cold : ['Jacket', 'Scarf', 'Gloves'],
         warm : ['Sweater', 'Hoodie', 'Jeans'],
@@ -103,8 +101,6 @@ function renderRecommendation(data, temperature) {
     }
     
     const liElements = document.querySelectorAll('#clothes li');
-
-   
 
     if(data.toLowerCase().includes("rain")) {
         liElements.forEach(function(li, i) {
