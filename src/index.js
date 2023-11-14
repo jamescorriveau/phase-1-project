@@ -1,4 +1,4 @@
-//Aaron
+
 
 const darkMode = document.querySelector("#light-dark");
 const body = document.querySelector("body")
@@ -52,9 +52,8 @@ const day = document.getElementById("date");
 const weatherImg = document.getElementById("weather-photo");
 const highLow = document.getElementById("high-low");
 
-reportButton.addEventListener("click", getCityWeather);
 
-function getCityWeather() {
+    const getCityWeather = () => {
     const cityName = cityInput.value.trim();
     if (!cityName) return;
 
@@ -66,34 +65,17 @@ function getCityWeather() {
         .then(data => {
             renderMainData(data);
             renderWeeklyWeather(data);
-        })
-            
-        };
-
-function renderMainData(data) {
-    cityName.textContent = data.location.name;
-    temperature.textContent = `${data.current.temp_f}°`;
-
-    const date = new Date(data.forecast.forecastday[0].date);
-    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    day.textContent = weekdays[date.getDay()];
-
-    weatherImg.src = "https:" + data.forecast.forecastday[0].day.condition.icon;
-
-    let high = Math.round(data.forecast.forecastday[0].day.maxtemp_f);
-    let low = Math.round(data.forecast.forecastday[0].day.mintemp_f);
-    highLow.textContent = `${high}° ${low}°`;
+        });
 }
 
-function renderWeeklyWeather(data) {
-    const weeklyWeather = document.getElementById("weekly-weather");
-    weeklyWeather.innerHTML = ""; 
+const renderMainData = (data) => {
+    document.getElementById('main-weather').innerText = data.current.condition.text;
+};
 
-    for (let i = 0; i < data.forecast.forecastday.length; i++) {
-        let container = document.createElement("div");
-        let date = new Date(data.forecast.forecastday[i].date);
-        let dayName = document.createElement("div");
-        dayName.textContent = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][date.getDay()];
+const renderWeeklyWeather = (data) => {
+    data.forecast.forecastday
+    console.log(data)
+};
 
         let img = document.createElement("img");
         img.src = "https:" + data.forecast.forecastday[i].day.condition.icon;
@@ -115,3 +97,8 @@ function renderWeeklyWeather(data) {
         });
     }
 }
+
+let cityInput = document.querySelector(".city-input");
+let reportButton = document.querySelector(".report-button");
+reportButton.addEventListener("click", getCityWeather);
+
