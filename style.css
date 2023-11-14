@@ -1,0 +1,58 @@
+body{
+    background-image:url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.city-input {
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 35px;
+    margin-right: 10px;
+    margin-top: 50px;
+    padding: 2px 30px 2px 120px;
+    float: right;
+    height: 60px;
+}
+
+.report-button {
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(224, 213, 213);
+    border-radius: 35px;
+    padding: 2px 23px 2px 30px;
+    margin-right: 50px;
+    margin-top: 50px;
+    float: right;
+    height: 64px
+}
+
+.white-box {
+    position: absolute;
+    background-color: #FFFFFF;
+    color: white;
+    border-radius: 20px;
+    width: 900px;
+    height: 600px;
+    padding-top: 20px;
+    margin-top: 200px;
+    margin-left: 475px
+}
+
+#light-dark {
+    font-size: 15px;
+    border: none;
+    position: absolute;
+    cursor: pointer;
+    background-color: rgb(224, 213, 213);
+    border-radius: 30px;
+    padding: 2px 2px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    bottom: 0;
+    float: left;
+    height: 64px
+} 
