@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document CHANGED!</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <button id="report-button">report button</button>
     <form>
+            <button class="report-button">Report Button</button>
+            <div class="form-popup"id="myForm">
+                <label for "Error"></label>
+                <input type="text" placeholder="Enter Error">
+                <button class"btns">Submit</button>
+                <button class"btnc">Cancel</button>
+            </div>
+            <div id="form-container"></div>
+            <label for="Location"></label>
             <input type="text" placeholder="Search Another City">
-    </form>
-    <div id="main-weather">
-
-    </div>
-
-    <div id="weekly-weather">
+            <!-- <script></script> -->
+        </form>
+        <div id="main-weather">
+            
+        </div>
         
-    </div>
-
-    <button id="light-dark">light-dark</button>
-</body>
+        <div id="weekly-weather">
+            
+        </div>
+        
+        <button id="light-dark">light-dark</button>
+    </body>
+    <script src="src/index.js"></script>
 </html>
