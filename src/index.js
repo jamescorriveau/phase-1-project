@@ -1,5 +1,5 @@
 
-fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d163149231311&q=New York&days=7&aqi=no&alerts=no")
+fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d163149231311&q=tampa&days=7&aqi=no&alerts=no")
 .then(function (response) {
     return response.json();
   })
@@ -15,18 +15,23 @@ const day = document.getElementById("date");
 const weatherImg = document.getElementById("weather-photo");
 const highLow = document.getElementById("high-low");
 
-
 function renderMainData(data) {
     cityName.textContent = data["location"]["name"]
-
+    
     let currentTemperature = data["current"]["temp_f"]
     temperature.textContent = `${currentTemperature}°`;
+    const temperatureNum = parseInt(currentTemperature);
+    
+    const liElements = document.querySelectorAll('#clothes li');
+    const currentWeather = data.current.condition.text;
 
+    renderRecommendation(currentWeather, temperatureNum);
+    
+        
     const date = data["forecast"]["forecastday"][0]["date"];
     const dateObject = new Date(date);
     const dayOfWeekNumber = dateObject.getDay();
 
-    console.log(date);
 
     const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
     const dayOfWeekName = weekdays[dayOfWeekNumber];
@@ -64,6 +69,7 @@ function renderWeeklyWeather(weather) {
         date.textContent = dayOfWeekName;
 
         const temperatureHighLow = `${high}° ${low}°`
+        const highParsed = parseInt(high);
         highLow2.textContent = temperatureHighLow;
 
         weeklyWeather.append(date,container);
@@ -75,10 +81,51 @@ function renderWeeklyWeather(weather) {
             day.textContent = dayOfWeekName;
             weatherImg.src = source;
             highLow.textContent = temperatureHighLow;
+            const weatherForecast = weather.forecast.forecastday[i].day.condition.text;
+            renderRecommendation(weatherForecast, highParsed);
         })
 
 
     }
 
-
 }
+
+
+function renderRecommendation(data, temperature) {
+    console.log(data);
+    console.log(temperature);
+    let clothes = {
+        cold : ['Jacket', 'Scarf', 'Gloves'],
+        warm : ['Sweater', 'Hoodie', 'Jeans'],
+        hot : ['Shortsleeves', 'Shorts', 'Sunscreen'],
+        raining: ['Umbrella','Rain shoes','Rain coats'],
+        snowing: ['Boots', 'Insulated Jacket and Pants', 'Beanie'],
+    }
+    
+    const liElements = document.querySelectorAll('#clothes li');
+
+   
+
+    if(data.toLowerCase().includes("rain")) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.raining[i]; 
+        });
+    } else if(data.toLowerCase().includes("snow")) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.snowing[i]; 
+        });
+    } else if(temperature <= 30){
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.cold[i]; 
+        });
+    } else if(temperature > 30 && temperature < 69) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.warm[i]; 
+        });
+    } else {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.hot[i]; 
+    });
+}
+}
+
