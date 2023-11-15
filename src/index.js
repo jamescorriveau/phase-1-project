@@ -5,24 +5,30 @@ const body = document.querySelector("body")
 
 let darkModeToggle = false
 
+// darkMode.addEventListener ("click", () => {
+//     console.log('dark mode working')
+//     document.body.style.backgroundImage=("/Users/aaronlevy/Downloads/hand-drawn-flat-winter-solstice-background_23-2149171229.jpg")
+// })
+//  keep text white
+// change the background 
 darkMode.addEventListener("click", () => {
     darkModeToggle = !darkModeToggle
     console.log(darkModeToggle)
-    
-    body.style.backgroundColor = "black"
     body.style.color = "white"
     if(darkModeToggle == true) {
-        body.style.backgroundColor = "black"
+        body.style.backgroundImage = "url('/Users/aaronlevy/Downloads/hand-drawn-flat-winter-solstice-background_23-2149171229.jpg')"
         body.style.color = "white" 
     } else {
-        body.style.backgroundColor = "white"
-        body.style.color = "black" 
+        body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')"
+        body.style.color = "white" 
     }
 })
 
 const errorButton = document.querySelector(".error-button")
 const submitButton = document.querySelector("#btns")
+console.log(submitButton)
 const form = document.querySelector("#myForm")
+const cancelButton = document.querySelector("#btnc")
 
 errorButton.addEventListener("click", (e) => {
     console.log('button clicked')
@@ -31,9 +37,17 @@ errorButton.addEventListener("click", (e) => {
 })
 form.addEventListener("click", (e) => {
     e.preventDefault();
-
 })
 
+submitButton.addEventListener("click" , (e) => {
+    e.preventDefault()
+    alert("Form has been submitted")
+    console.log("submit button clicked")
+})
+
+cancelButton.addEventListener("click", (e) => {
+    closeForm();
+})
 function openForm() {
     document.getElementById("myForm").style.display = "block";
 }
