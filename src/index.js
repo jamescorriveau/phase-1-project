@@ -43,7 +43,6 @@ errorButton.addEventListener("click", (e) => {
 })
 form.addEventListener("click", (e) => {
     e.preventDefault();
-
 })
 
 function openForm() {
@@ -80,8 +79,16 @@ const highLow = document.getElementById("high-low");
         });
 }
 
+// REMOVED SEARCH BUTTON AND REPLACED WITH 'KEYPRESS' EVENT
+// reportButton.addEventListener("click", getCityWeather);
 
-reportButton.addEventListener("click", getCityWeather);
+cityInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        getCityWeather();
+        cityInput.value = "";
+    }
+});
 
 //kenneth
 
@@ -194,4 +201,3 @@ function renderRecommendation(data, temperature) {
     });
 }
 }
-
