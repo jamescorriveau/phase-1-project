@@ -23,26 +23,38 @@
     <button class="report-button">Search</button>
     <input class="city-input" type="text" placeholder="Enter City">
 
-    <div id="main-weather">
-        <h1 id="city-name"></h1>
-        <p id="current-temperature"></p>
-        <div id="date"></div>
-        <div>
-            <img id="weather-photo" src="">
-            <p id="high-low"></p>
+    <div id="white-box">
+        <div id="main-weather">
+            <h1 id="city-name"></h1>
+            <div class="main-day-container">
+                <div id="date"></div>
+                <img id="weather-photo" src="">
+                <p id="high-low"></p>
+            </div>
+            <h1 id="city-name"></h1>
+            
+            <h1 id="current-temperature"></h1>
+            <div>
+                <!-- <div class="main-day-container">
+                    <div id="date"></div>
+                    <img id="weather-photo" src="">
+                    <p id="high-low"></p>
+                </div> -->
+                <p id="current-temperature"></p>
+                <div id="list-container">
+                    <p id="whatToWear">Remember to wear or bring</p>
+                    <ul id="clothes">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <h1 id="city-name"></h1>
+    
+        <div id="weekly-weather">
 
-        <p id="current-temperature"></p>
-        <div id="date"></div>
-        <div>
-            <img id="weather-photo" src="">
-            <p id="high-low"></p>
         </div>
-    </div>
-
-    <div id="weekly-weather">
-       
     </div>
 
     <button id="light-dark">Toggle Theme</button>
