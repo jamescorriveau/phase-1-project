@@ -1,5 +1,16 @@
+//POPULATES THE INTIAL PAGE TO SHOW NEW YORK
+fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d163149231311&q=New York&days=7&aqi=no&alerts=no")
+.then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    renderMainData(data);
+    renderWeeklyWeather(data);
+  });
 
 
+//TOGGLE BUTTON
 const darkMode = document.querySelector("#light-dark");
 const body = document.querySelector("body")
 
@@ -20,6 +31,7 @@ darkMode.addEventListener("click", () => {
     }
 })
 
+//ERROR BUTTON
 const errorButton = document.querySelector(".error-button")
 const submitButton = document.querySelector("#btns")
 const form = document.querySelector("#myForm")
