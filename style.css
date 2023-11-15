@@ -138,9 +138,14 @@ body{
 .weekly-day-container {
   display: flex;
   flex-direction: column;
-  /* margin-right: 45px; */
   margin: auto;
   align-items: baseline;
-  justify-content: center;
-  margin-top: 80px;
+  align-items: center;
+  margin-top: 85px;
+}
+
+#main-day-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
 }
