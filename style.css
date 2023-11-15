@@ -1,5 +1,6 @@
 body{
-    background-image:url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg');
+    background-image:url("images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg");
+    /* background-image:url("/Users/aaronlevy/Downloads/hand-drawn-flat-winter-solstice-background_23-2149171229.jpg"); */
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-size: cover;
