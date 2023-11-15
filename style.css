@@ -67,19 +67,19 @@ body{
     opacity: 0.8;
   }
 
+  /*  Set a style for city search input */
 .city-input {
     font-size: 20px;
     border: none;
-    cursor: pointer;
+    cursor: text;
     border-radius: 35px;
-    margin-right: 10px;
-    margin-top: 50px;
+    margin-right: 30px;
     padding: 2px 30px 2px 120px;
     float: right;
-    height: 60px;
+    height: 40px;
 }
 
-.report-button {
+/* .report-button {
     font-size: 20px;
     border: none;
     cursor: pointer;
@@ -89,8 +89,7 @@ body{
     margin-right: 50px;
     margin-top: 50px;
     float: right;
-    height: 64px
-}
+    height: 64px */
 
 
 #light-dark {
