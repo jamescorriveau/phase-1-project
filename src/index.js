@@ -164,7 +164,7 @@ function renderWeeklyWeather(weather) {
 function renderRecommendation(data, temperature) {
     let clothes = {
         cold : ['Jacket', 'Scarf', 'Gloves'],
-        warm : ['Sweater', 'Hoodie', 'Jeans'],
+        warm : ['Sweater', 'Hoodie', 'Long Pants'],
         hot : ['Shortsleeves', 'Shorts', 'Sunscreen'],
         raining: ['Umbrella','Rain shoes','Rain coats'],
         snowing: ['Boots', 'Insulated Jacket and Pants', 'Beanie'],
