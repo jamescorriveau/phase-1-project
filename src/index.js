@@ -68,37 +68,118 @@ const highLow = document.getElementById("high-low");
         });
 }
 
-const renderMainData = (data) => {
-    document.getElementById('main-weather').innerText = data.current.condition.text;
-};
 
-const renderWeeklyWeather = (data) => {
-    data.forecast.forecastday
-    console.log(data)
-};
+reportButton.addEventListener("click", getCityWeather);
 
-        let img = document.createElement("img");
-        img.src = "https:" + data.forecast.forecastday[i].day.condition.icon;
+//kenneth
 
-        let high = Math.round(data.forecast.forecastday[i].day.maxtemp_f);
-        let low = Math.round(data.forecast.forecastday[i].day.mintemp_f);
-        let highLow2 = document.createElement("p");
-        highLow2.textContent = `${high}° ${low}°`;
+function renderMainData(data) {
+    cityName.textContent = data["location"]["name"]
+    
+    let currentTemperature = data["current"]["temp_f"]
+    temperature.textContent = `${currentTemperature}°`;
+    const temperatureNum = parseInt(currentTemperature);
+    
+    const liElements = document.querySelectorAll('#clothes li');
+    const currentWeather = data.current.condition.text;
 
-        container.append(dayName, img, highLow2);
-        weeklyWeather.appendChild(container);
-
+    renderRecommendation(currentWeather, temperatureNum);
+    
         
-        container.addEventListener("click", function () {
-            temperature.textContent = `${high}°`;
-            day.textContent = dayName.textContent;
-            weatherImg.src = img.src;
-            highLow.textContent = highLow2.textContent;
-        });
-    }
+    const date = data["forecast"]["forecastday"][0]["date"];
+    const dateObject = new Date(date);
+    const dayOfWeekNumber = dateObject.getDay();
+
+
+    const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+    const dayOfWeekName = weekdays[dayOfWeekNumber];
+    day.textContent = dayOfWeekName;
+    
+    weatherImg.src = "https:" + data["forecast"]["forecastday"][0]["day"]["condition"]["icon"];
+    
+    let high = Math.round(data["forecast"]["forecastday"][0]["day"]["maxtemp_f"]);
+    let low = Math.round(data["forecast"]["forecastday"][0]["day"]["mintemp_f"]);
+
+    highLow.textContent = `${high}° ${low}°`
 }
 
-let cityInput = document.querySelector(".city-input");
-let reportButton = document.querySelector(".report-button");
-reportButton.addEventListener("click", getCityWeather);
+
+function renderWeeklyWeather(weather) {
+    const weeklyWeather = document.getElementById("weekly-weather");
+
+    for(let i = 0; i < 7; i++) {
+        let date = document.createElement("div");
+        let container = document.createElement("div");
+        let weeklyDate = weather["forecast"]["forecastday"][i]["date"]; 
+        date.textContent = weeklyDate;
+
+        let img = document.createElement("img");
+        let source = "https:" + weather["forecast"]["forecastday"][i]["day"]["condition"]["icon"]
+        img.src = source;
+
+        const highLow2 = document.createElement("p");
+        let high = Math.round(weather["forecast"]["forecastday"][i]["day"]["maxtemp_f"]);
+        let low = Math.round(weather["forecast"]["forecastday"][i]["day"]["mintemp_f"]);
+        const dateObject = new Date(weeklyDate);
+        const dayOfWeekNumber = dateObject.getDay();
+        const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+        const dayOfWeekName = weekdays[dayOfWeekNumber];
+        date.textContent = dayOfWeekName;
+
+        const temperatureHighLow = `${high}° ${low}°`
+        const highParsed = parseInt(high);
+        highLow2.textContent = temperatureHighLow;
+
+        weeklyWeather.append(date,container);
+        container.append(img, highLow2);
+
+        //event listener for images
+        img.addEventListener("click", function() {
+            temperature.textContent = `${high}°`;
+            day.textContent = dayOfWeekName;
+            weatherImg.src = source;
+            highLow.textContent = temperatureHighLow;
+            const weatherForecast = weather.forecast.forecastday[i].day.condition.text;
+            renderRecommendation(weatherForecast, highParsed);
+        })
+
+
+    }
+
+}
+
+
+function renderRecommendation(data, temperature) {
+    let clothes = {
+        cold : ['Jacket', 'Scarf', 'Gloves'],
+        warm : ['Sweater', 'Hoodie', 'Jeans'],
+        hot : ['Shortsleeves', 'Shorts', 'Sunscreen'],
+        raining: ['Umbrella','Rain shoes','Rain coats'],
+        snowing: ['Boots', 'Insulated Jacket and Pants', 'Beanie'],
+    }
+    
+    const liElements = document.querySelectorAll('#clothes li');
+
+    if(data.toLowerCase().includes("rain")) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.raining[i]; 
+        });
+    } else if(data.toLowerCase().includes("snow")) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.snowing[i]; 
+        });
+    } else if(temperature <= 30){
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.cold[i]; 
+        });
+    } else if(temperature > 30 && temperature < 69) {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.warm[i]; 
+        });
+    } else {
+        liElements.forEach(function(li, i) {
+            li.textContent = clothes.hot[i]; 
+    });
+}
+}
 
