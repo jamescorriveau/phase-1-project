@@ -88,7 +88,7 @@ reportButton.addEventListener("click", getCityWeather);
 function renderMainData(data) {
     cityName.textContent = data["location"]["name"]
     
-    let currentTemperature = data["current"]["temp_f"]
+    let currentTemperature = Math.round(data["current"]["temp_f"]);
     temperature.textContent = `${currentTemperature}°`;
     const temperatureNum = parseInt(currentTemperature);
     
@@ -142,8 +142,9 @@ function renderWeeklyWeather(weather) {
         const highParsed = parseInt(high);
         highLow2.textContent = temperatureHighLow;
 
-        weeklyWeather.append(date,container);
-        container.append(img, highLow2);
+        weeklyWeather.append(container);
+        container.className = "weekly-day-container"
+        container.append(date, img, highLow2);
 
         //event listener for images
         img.addEventListener("click", function() {
