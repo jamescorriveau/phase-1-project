@@ -82,13 +82,13 @@ const highLow = document.getElementById("high-low");
 
 
 reportButton.addEventListener("click", getCityWeather);
-// cityInput.addEventListener("keypress", function(e) {
-//     if (e.key === "Enter") {
-//         e.preventDefault();
-//         getCityWeather();
-//         cityInput.value = "";
-//     }
-// });
+cityInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        getCityWeather();
+        cityInput.value = "";
+    }
+});
 
 //kenneth
 
@@ -125,7 +125,11 @@ function renderMainData(data) {
 
 function renderWeeklyWeather(weather) {
     const weeklyWeather = document.getElementById("weekly-weather");
-        
+    let dayContainers = weeklyWeather.getElementsByClassName("weekly-day-container");
+
+    Array.from(dayContainers).forEach(function(element) {
+        element.remove();
+    });    
 
     for(let i = 0; i < 7; i++) {
         let date = document.createElement("div");
