@@ -115,10 +115,13 @@ body {
   margin: auto;
   /* align-items: center; */
   justify-content: space-evenly;
+  width: 60vw;
+  height: 30vh; 
 }
 
 #weekly-weather {
-  display: flex
+  display: flex;
+  height: 50vh; 
 }
 
 #white-box {
@@ -132,8 +135,8 @@ body {
     height: 50% px; */
     /* width: 60%;
     height: 60%; */
-    width: 60vw; /* 60% of the viewport width */
-    height: 60vh; /* 60% of the viewport height */
+    width: 60vw;
+    height: 60vh; 
     /* padding-top: 20px; */
     top:0;
     bottom: 0;
