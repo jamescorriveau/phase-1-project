@@ -290,3 +290,33 @@ li {
     width: 8vw; 
     height: 8vw;
   }
+
+  @media screen and (max-width: 768px) {
+    body {
+      width: 90%; 
+      height: 80vh; 
+    }
+    
+    #weekly-weather {
+      flex: 1; 
+    }
+  } 
+
+  #myForm {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    width: 240px;
+  }
+
+  .form-error {
+    width: 232px;
+    height: 60px;
+  }
+
+  #btns, #btnc {
+    width: 240px;   height: 60px; 
+  }
