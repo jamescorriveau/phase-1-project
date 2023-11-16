@@ -12,33 +12,26 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d1631492
 
 //TOGGLE BUTTON
 const darkMode = document.querySelector("#light-dark");
-const body = document.querySelector("body")
+const body = document.querySelector("body");
 
-let darkModeToggle = false
+let darkModeToggle = false;
 
-// darkMode.addEventListener ("click", () => {
-//     console.log('dark mode working')
-//     document.body.style.backgroundImage=("/Users/aaronlevy/Downloads/hand-drawn-flat-winter-solstice-background_23-2149171229.jpg")
-// })
-//  keep text white
-// change the background 
 darkMode.addEventListener("click", () => {
-    darkModeToggle = !darkModeToggle
-    console.log(darkModeToggle)
-    body.style.color = "white"
-    if(darkModeToggle == true) {
-        body.style.backgroundImage = "url('/Users/aaronlevy/Downloads/hand-drawn-flat-winter-solstice-background_23-2149171229.jpg')"
-        body.style.color = "white" 
+    darkModeToggle = !darkModeToggle;
+    console.log(darkModeToggle);
+    if (darkModeToggle) {
+        body.style.backgroundImage = "url('/Users/jamescorriveau/Development/code/phase-1/phase-1-project/images/dark-forrest.jpg')";
+        body.style.color = "white";
     } else {
-        body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')"
-        body.style.color = "white" 
+        body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')";
+        body.style.color = "black";
     }
-})
+});
 
-//ERROR BUTTON
+
+//ERROR BUTTON/ALERT 
 const errorButton = document.querySelector(".error-button")
 const submitButton = document.querySelector("#btns")
-console.log(submitButton)
 const form = document.querySelector("#myForm")
 const cancelButton = document.querySelector("#btnc")
 
@@ -60,6 +53,7 @@ submitButton.addEventListener("click" , (e) => {
 cancelButton.addEventListener("click", (e) => {
     closeForm();
 })
+
 function openForm() {
     document.getElementById("myForm").style.display = "block";
 }
@@ -91,6 +85,8 @@ const highLow = document.getElementById("high-low");
         .then(data => {
             renderMainData(data);
             renderWeeklyWeather(data);
+            console.log(data);
+            
         });
 }
 

@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
 </head>
-<body>
+<body style="background-image: url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg');">
     <form>
-        <button class="error-button">Error Button</button>
+        <button class="error-button">&#33;</button>
         <div class="form-popup"id="myForm">
             <label for "Error"></label>
             <input type="text" placeholder="Enter Error">
@@ -17,12 +17,8 @@
             <button id="btnc">Cancel</button>
         </div>
         <div id="form-container"></div>
-        
-        <!-- <script></script> -->
     </form>
-    <button class="report-button">Search</button>
     <input class="city-input" type="text" placeholder="Enter City">
-
     <div id="white-box">
         <div id="main-weather">
             <h1 id="city-name"></h1>
@@ -53,10 +49,11 @@
         </div>
     
         <div id="weekly-weather">
-
         </div>
     </div>
-
-    <button id="light-dark">Toggle Theme</button>
+    <label class="switch">
+        <input type="checkbox" id="light-dark">
+        <span class="slider round">
+    </label>
 </body>
 </html>
