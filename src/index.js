@@ -12,29 +12,28 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=7db73fb6ebd6428c97d1631492
 
 //TOGGLE BUTTON
 const darkMode = document.querySelector("#light-dark");
-const body = document.querySelector("body")
+const body = document.querySelector("body");
 
-let darkModeToggle = false
+let darkModeToggle = false;
 
 darkMode.addEventListener("click", () => {
-    darkModeToggle = !darkModeToggle
-    console.log(darkModeToggle)
-    
-    body.style.backgroundColor = "black"
-    body.style.color = "white"
-    if(darkModeToggle == true) {
-        body.style.backgroundColor = "black"
-        body.style.color = "white" 
+    darkModeToggle = !darkModeToggle;
+    console.log(darkModeToggle);
+    if (darkModeToggle) {
+        body.style.backgroundImage = "url('/Users/jamescorriveau/Development/code/phase-1/phase-1-project/images/dark-forrest.jpg')";
+        body.style.color = "white";
     } else {
-        body.style.backgroundColor = "white"
-        body.style.color = "black" 
+        body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')";
+        body.style.color = "black";
     }
-})
+});
 
-//ERROR BUTTON
+
+//ERROR BUTTON/ALERT 
 const errorButton = document.querySelector(".error-button")
 const submitButton = document.querySelector("#btns")
 const form = document.querySelector("#myForm")
+const cancelButton = document.querySelector("#btnc")
 
 errorButton.addEventListener("click", (e) => {
     console.log('button clicked')
@@ -43,6 +42,16 @@ errorButton.addEventListener("click", (e) => {
 })
 form.addEventListener("click", (e) => {
     e.preventDefault();
+})
+
+submitButton.addEventListener("click" , (e) => {
+    e.preventDefault()
+    alert("Form has been submitted")
+    console.log("submit button clicked")
+})
+
+cancelButton.addEventListener("click", (e) => {
+    closeForm();
 })
 
 function openForm() {
@@ -76,6 +85,8 @@ const highLow = document.getElementById("high-low");
         .then(data => {
             renderMainData(data);
             renderWeeklyWeather(data);
+            console.log(data);
+            
         });
 }
 
@@ -95,7 +106,7 @@ cityInput.addEventListener("keypress", function(e) {
 function renderMainData(data) {
     cityName.textContent = data["location"]["name"]
     
-    let currentTemperature = data["current"]["temp_f"]
+    let currentTemperature = Math.round(data["current"]["temp_f"]);
     temperature.textContent = `${currentTemperature}°`;
     const temperatureNum = parseInt(currentTemperature);
     
@@ -125,6 +136,11 @@ function renderMainData(data) {
 
 function renderWeeklyWeather(weather) {
     const weeklyWeather = document.getElementById("weekly-weather");
+    let dayContainers = weeklyWeather.getElementsByClassName("weekly-day-container");
+
+    Array.from(dayContainers).forEach(function(element) {
+        element.remove();
+    });    
 
     for(let i = 0; i < 7; i++) {
         let date = document.createElement("div");
@@ -149,8 +165,9 @@ function renderWeeklyWeather(weather) {
         const highParsed = parseInt(high);
         highLow2.textContent = temperatureHighLow;
 
-        weeklyWeather.append(date,container);
-        container.append(img, highLow2);
+        weeklyWeather.append(container);
+        container.className = "weekly-day-container"
+        container.append(date, img, highLow2);
 
         //event listener for images
         img.addEventListener("click", function() {
