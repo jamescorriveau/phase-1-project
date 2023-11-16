@@ -18,8 +18,8 @@ body {
     font-size: 30px;
     font-weight: bold;
     position: absolute; 
-    left: 30px; 
-    top: 20px; 
+    left: 20px; 
+    top: 19px; 
 } 
 
 .open-button {
@@ -90,8 +90,8 @@ body {
     float: right;
     height: 40px;
     position: absolute; 
-    right: 30px; 
-    top: 30px; 
+    right: 1%; 
+    top: 3%; 
 }
 
 #light-dark {
