@@ -183,8 +183,8 @@ input:checked + .slider:before {
       height: 50% px; */
       /* width: 60%;
       height: 60%; */
-      width: 60vw;
-      height: 60vh; 
+      width: 55vw;
+      height: 55vh; 
       /* padding-top: 20px; */
       top:0;
       bottom: 0;
@@ -226,55 +226,51 @@ input:checked + .slider:before {
   margin: auto;
   align-items: baseline;
   align-items: center;
+  height: fit-content;
   /* margin-top: 85px; */
 }
 
 .main-day-container {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  /* align-items: baseline; */
   align-items: center;
   position: relative;
-  top: 3vw;
+  top: 2.5vw;
   /* left: 1vw; */
 
   /* left: 20px; */
 }
 
 #current-temperature {
-  font-size: 6vw;
-  position:relative;
+  font-size: 4.5vw;
+  /* position:relative; */
   /* right: 5vw; */
-
+  /* margin-bottom: 5%; */
 }
 
-#weather-photo{
-  width: 10vw; 
-  height: 10vw;
-}
 
 #list-container {
   position: relative;
   /* bottom: 45px;
   right: 5px; */
   /* bottom: 5vw; */
-  /* right: 1vw; */
+  left: 1vw;
   font-size: 1.25vw;
 }
 
 li { 
   list-style-type: none;
   margin: 0;
-  padding: 0;
-  /* margin-bottom: 10px; */
+  margin-bottom: 7px;
   /* margin-bottom: 1vw; */
 }  
 
 #city-name {
-  font-size: 4.5vw;
+  font-size: 4vw;
   position: relative;
-  bottom: 35%;
-  right: 3vw;
+  bottom: 25%;
+  right: 2.5vw;
   text-align: center;
   /* position: absolute;
   top: 8px;
@@ -283,9 +279,14 @@ li {
 }
 
 #date {
-  font-size: 2vw; 
+  font-size: 1.75vw; 
 }
 
 #high-low {
-  font-size: 1.5vw;
+  font-size: 1.25vw;
+
 }
+  #weather-photo{
+    width: 8vw; 
+    height: 8vw;
+  }
