@@ -19,12 +19,15 @@ let darkModeToggle = false;
 darkMode.addEventListener("click", () => {
     darkModeToggle = !darkModeToggle;
     console.log(darkModeToggle);
+    const whiteBox = document.getElementById("white-box");
     if (darkModeToggle) {
         body.style.backgroundImage = "url('images/dark-forrest.jpg')";
         body.style.color = "white";
+        whiteBox.style.backgroundColor = "rgba(91, 90, 91, 0.8)";
     } else {
         body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')";
         body.style.color = "black";
+        whiteBox.style.backgroundColor = "rgba(209, 203, 206, 0.8)";
     }
 });
 
