@@ -20,7 +20,7 @@ darkMode.addEventListener("click", () => {
     darkModeToggle = !darkModeToggle;
     console.log(darkModeToggle);
     if (darkModeToggle) {
-        body.style.backgroundImage = "url('/Users/jamescorriveau/Development/code/phase-1/phase-1-project/images/dark-forrest.jpg')";
+        body.style.backgroundImage = "url('images/dark-forrest.jpg')";
         body.style.color = "white";
     } else {
         body.style.backgroundImage = "url('images/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg')";
